@@ -108,4 +108,23 @@ public class DBHelper {
         System.out.println(result);
         return result;
     }
+
+    public static Manager findManagerForDept(int id){
+        session = HibernateUtil.getSessionFactory().openSession();
+        Manager Manager = null;
+        try {
+            transaction = session.beginTransaction();
+            String hql = "from Manager where department_id = :id";
+            Query query = session.createQuery(hql);
+            query.setInteger("id", id);
+            Manager = (Manager)query.uniqueResult();
+            transaction.commit();
+        } catch (HibernateException e) {
+            transaction.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return Manager;
+    }
 }

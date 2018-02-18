@@ -11,8 +11,7 @@ public class Manager extends Employee {
 
 
     private double budget;
-    private Set<Employee> employees;
-    private Department department;
+
 
     public Manager() {
     }
@@ -22,9 +21,13 @@ public class Manager extends Employee {
         this.budget = budget;
     }
 
+    @Column(name="budget")
+    public double getBudget() {
+        return budget;
+    }
+
     public void setBudget(double budget) {
         this.budget = budget;
     }
-
 }
 
